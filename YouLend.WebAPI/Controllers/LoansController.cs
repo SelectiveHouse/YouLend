@@ -46,11 +46,11 @@ namespace YouLend.WebAPI.Controllers
             return loan;
         }
 
-        // PUT: api/Loans/5
+        // PATCH: api/Loans/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLoan(Guid id, Loan loan)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchLoan(Guid id, Loan loan)
         {
             if (id != loan.LoanId)
             {
