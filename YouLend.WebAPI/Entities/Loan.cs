@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace YouLend.WebAPI.Entities
 {
@@ -19,5 +16,7 @@ namespace YouLend.WebAPI.Entities
 
         public decimal RepaymentAmount { get; set; }
         public decimal FundingAmount { get; set; }
+        //Testing a bit of loan maths :)
+        public decimal LeftToPay => RepaymentAmount - FundingAmount;
     }
 }

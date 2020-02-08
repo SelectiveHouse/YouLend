@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using YouLend.WebAPI.Entities;
 
 namespace YouLend.WebAPI.Data
