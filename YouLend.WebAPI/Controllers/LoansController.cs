@@ -11,6 +11,7 @@ using YouLend.WebAPI.Entities;
 
 namespace YouLend.WebAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class LoansController : ControllerBase
@@ -54,14 +55,15 @@ namespace YouLend.WebAPI.Controllers
         {
             if (id != loan.LoanId)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             _context.Entry(loan).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                _loanRepository.Update(loan);
+                var save = await _loanRepository.SaveAsync(loan);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,8 +86,13 @@ namespace YouLend.WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Loan>> PostLoan(Loan loan)
         {
-            _context.Loan.Add(loan);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _loanRepository.Add(loan);
+            var save = await _loanRepository.SaveAsync(loan);
 
             return CreatedAtAction("GetLoan", new { id = loan.LoanId }, loan);
         }
@@ -94,16 +101,21 @@ namespace YouLend.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Loan>> DeleteLoan(Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var loan = await _context.Loan.FindAsync(id);
             if (loan == null)
             {
                 return NotFound();
             }
 
-            _context.Loan.Remove(loan);
-            await _context.SaveChangesAsync();
+            _loanRepository.Delete(loan);
+            var save = await _loanRepository.SaveAsync(loan);
 
-            return loan;
+            return Ok(loan);
         }
 
         private bool LoanExists(Guid id)

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using YouLend.WebAPI.Data;
+using YouLend.WebAPI.Data.Repositories;
 
 namespace YouLend
 {
@@ -29,8 +30,19 @@ namespace YouLend
         {
             services.AddControllers();
 
-            services.AddDbContext<WebAPIContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("YouLendWebAPIContext")));
+            //Add an in memory db instance for testing
+            services.AddDbContext<WebAPIContext>(opt => opt.UseInMemoryDatabase("TestDb"));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+            //Optimise this in the future, registering a repository of a generic type doesnt seem that efficent...
+            services.AddScoped(typeof(ILoanRepository<>), typeof(LoanRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +53,16 @@ namespace YouLend
                 app.UseDeveloperExceptionPage();
             }
 
+            /*
+             * Pipeline:
+             * CORS > HTTPS > Routing > Auth
+             */
+
+            app.UseCors("CorsPolicy");
+
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
