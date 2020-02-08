@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using YouLend.WebAPI.Data;
 
 namespace YouLend
 {
@@ -13,7 +9,21 @@ namespace YouLend
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            //Find the service layer in scope
+            using (var scope = host.Services.CreateScope())
+            {
+                //Get the WebApiContext in service
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<WebAPIContext>();
+
+                //Call LoanSeeder to create sample data
+                LoanSeeder.Initialize(services);
+            }
+
+            //Continue to run
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

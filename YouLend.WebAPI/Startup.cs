@@ -31,7 +31,7 @@ namespace YouLend
             services.AddControllers();
 
             //Add an in memory db instance for testing
-            services.AddDbContext<WebAPIContext>(opt => opt.UseInMemoryDatabase("TestDb"));
+            services.AddDbContext<WebAPIContext>(opt => opt.UseInMemoryDatabase("Loans"));
 
             services.AddCors(options =>
             {
