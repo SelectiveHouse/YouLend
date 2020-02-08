@@ -14,6 +14,6 @@ namespace YouLend.WebAPI.Data
         {
         }
 
-        public DbSet<Loan> Loan { get; set; }
+        public DbSet<Loan> Loans { get; set; }
     }
 }

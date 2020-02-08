@@ -30,14 +30,14 @@ namespace YouLend.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Loan>>> GetLoan()
         {
-            return await _context.Loan.ToListAsync();
+            return await _context.Loans.ToListAsync();
         }
 
         // GET: api/Loans/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Loan>> GetLoan(Guid id)
         {
-            var loan = await _context.Loan.FindAsync(id);
+            var loan = await _context.Loans.FindAsync(id);
 
             if (loan == null)
             {
@@ -106,7 +106,7 @@ namespace YouLend.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var loan = await _context.Loan.FindAsync(id);
+            var loan = await _context.Loans.FindAsync(id);
             if (loan == null)
             {
                 return NotFound();
@@ -120,7 +120,7 @@ namespace YouLend.WebAPI.Controllers
 
         private bool LoanExists(Guid id)
         {
-            return _context.Loan.Any(e => e.LoanId == id);
+            return _context.Loans.Any(e => e.LoanId == id);
         }
     }
 }
