@@ -1,1 +1,26 @@
-<p>loan-add-edit works!</p>
+<h1>{{actionType}} loan</h1>
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+    <div class="form-group row">
+        <label class="control-label col-md-12">First Name</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="borrowerFirstName">
+        </div>
+        <span class="text-danger ml-3" *ngIf="borrowerFirstName.invalid && formDir.submitted">
+            First name is required
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Last Name</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="borrowerLastName">
+        </div>
+        <span class="text-danger ml-3" *ngIf="borrowerLastName.invalid && formDir.submitted">
+            Last name is required
+        </span>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-success float-right">Save</button>
+        <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+      </div>
+</form>
