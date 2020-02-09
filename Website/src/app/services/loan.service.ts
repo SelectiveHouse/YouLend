@@ -31,8 +31,8 @@ export class LoanService {
       );
    }
 
-   getLoan(loanGuid: string): Observable<Loan> {
-     return this.http.get<Loan>(this.appUrl + this.apiUrl + loanGuid)
+   getLoan(loanId: number): Observable<Loan> {
+     return this.http.get<Loan>(this.appUrl + this.apiUrl + loanId)
      .pipe(
        retry(1),
        catchError(this.errorHandler)
@@ -49,8 +49,8 @@ export class LoanService {
     );
    }
 
-   updateLoan(loanGuid: string, loan): Observable<Loan> {
-    return this.http.put<Loan>(this.appUrl + this.apiUrl + loanGuid,
+   updateLoan(loanId: number, loan): Observable<Loan> {
+    return this.http.put<Loan>(this.appUrl + this.apiUrl + loanId,
        JSON.stringify(loan),
        this.httpOptions)
     .pipe(
@@ -59,8 +59,8 @@ export class LoanService {
     );
    }
 
-   deleteLoan(loanGuid: string): Observable<Loan> {
-    return this.http.get<Loan>(this.appUrl + this.apiUrl + loanGuid)
+   deleteLoan(loanId: number): Observable<Loan> {
+    return this.http.delete<Loan>(this.appUrl + this.apiUrl + loanId)
     .pipe(
       retry(1),
       catchError(this.errorHandler)

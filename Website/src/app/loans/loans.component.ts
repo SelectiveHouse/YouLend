@@ -22,10 +22,10 @@ export class LoansComponent implements OnInit {
     this.loans$ = this.loanService.getLoans();
   }
 
-  delete(loanGuid) {
-    const answer = confirm('Do you want to delete loan: ' + loanGuid);
+  delete(loanId) {
+    const answer = confirm('Do you want to delete loan: ' + loanId);
     if (answer) {
-      this.loanService.deleteLoan(loanGuid).subscribe((data) => {
+      this.loanService.deleteLoan(loanId).subscribe((data) => {
         this.loadLoans();
       });
     }

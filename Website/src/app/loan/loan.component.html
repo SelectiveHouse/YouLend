@@ -1,1 +1,12 @@
-<p>loan works!</p>
+<ng-container *ngIf="(loan$ | async) as loan; else loading">
+    <h1>{{ loan.borrowerFullName }}</h1>
+    <div>{{ loan.body }}</div>
+    <ul>
+        <li>Repayment Amount: {{ loan.repaymentAmount | currency: "GBP"}}</li>
+        <li>Funding Given: {{ loan.fundingAmount | currency: "GBP"}}</li>
+        <li>Total left: {{ loan.leftToPay | currency: "GBP"}}</li>
+    </ul>
+    <h2>Loan Taken Out: </h2>
+    <p>{{  loan.loanTakenOut | date: "long" }}</p>
+</ng-container>
+<ng-template #loading>Loading...</ng-template>
