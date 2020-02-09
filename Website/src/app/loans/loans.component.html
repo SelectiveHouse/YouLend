@@ -1,7 +1,7 @@
 <h1>Loans</h1>
 
 <!-- If no loans found, display loading -->
-<p *ngIf="!(loans$ | async)"><em>Loading loans...</em>></p>
+<p *ngIf="!(loans$ | async)"><em>Loading loans...</em></p>
 <p>
     <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New Loan</a>
 </p>
