@@ -29,7 +29,7 @@ namespace YouLend.WebAPI.Data
                 context.Loans.AddRange(
                 new Loan
                 {
-                    LoanId = Guid.NewGuid(),
+                    LoanId = 1,
                     BorrowerFirstName = "Joe",
                     BorrowerLastName = "Jordan",
                     RepaymentAmount = 6560.60m,
@@ -37,7 +37,7 @@ namespace YouLend.WebAPI.Data
                 },
                 new Loan
                 {
-                    LoanId = Guid.NewGuid(),
+                    LoanId = 2,
                     BorrowerFirstName = "Mark",
                     BorrowerLastName = "Ufland",
                     RepaymentAmount = 600560.60m,
@@ -45,7 +45,7 @@ namespace YouLend.WebAPI.Data
                 },
                 new Loan
                 {
-                    LoanId = Guid.NewGuid(),
+                    LoanId = 3,
                     BorrowerFirstName = "Barry",
                     BorrowerLastName = "Gibbs",
                     RepaymentAmount = 1203450.60m,

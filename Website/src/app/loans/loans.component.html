@@ -1,1 +1,26 @@
-<p>loans works!</p>
+<h1>Loans</h1>
+
+<!-- If no loans found, display loading -->
+<p *ngIf="!(loans$ | async)"><em>Loading loans...</em>></p>
+<p>
+    <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New Loan</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="(loans$ | async)?.length>0">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Loan Takenout</th>
+            <th>Repayment</th>
+            <th>Funding</th>
+            <th>Left to Pay</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let loan of (loans$ | async)">
+            <td>{{ loan.loanGuid }}</td>
+            <td><a [routerLink]="['/loan/', loan.loanGuid]">{{ loan.borrowerFullName }}</a></td>
+        </tr>
+    </tbody>
+</table>

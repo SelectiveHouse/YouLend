@@ -6,7 +6,7 @@ namespace YouLend.WebAPI.Entities
     public class Loan
     {
         [Key]
-        public Guid LoanId { get; set; }
+        public int LoanId { get; set; }
         [Required]
         public string BorrowerFirstName { get; set; }
         [Required]
@@ -18,5 +18,6 @@ namespace YouLend.WebAPI.Entities
         public decimal FundingAmount { get; set; }
         //Testing a bit of loan maths :)
         public decimal LeftToPay => RepaymentAmount - FundingAmount;
+        public DateTime LoanTakenOut => DateTime.UtcNow;
     }
 }

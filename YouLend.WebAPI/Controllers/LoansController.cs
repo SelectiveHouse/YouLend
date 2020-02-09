@@ -34,7 +34,7 @@ namespace YouLend.WebAPI.Controllers
 
         // GET: api/Loans/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Loan>> GetLoan(Guid id)
+        public async Task<ActionResult<Loan>> GetLoan(int id)
         {
             var loan = await _context.Loans.FindAsync(id);
 
@@ -46,11 +46,11 @@ namespace YouLend.WebAPI.Controllers
             return loan;
         }
 
-        // PATCH: api/Loans/5
+        // PUT: api/Loans/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchLoan(Guid id, Loan loan)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutLoan(int id, Loan loan)
         {
             if (id != loan.LoanId)
             {
@@ -98,7 +98,7 @@ namespace YouLend.WebAPI.Controllers
 
         // DELETE: api/Loans/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Loan>> DeleteLoan(Guid id)
+        public async Task<ActionResult<Loan>> DeleteLoan(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace YouLend.WebAPI.Controllers
             return Ok(loan);
         }
 
-        private bool LoanExists(Guid id)
+        private bool LoanExists(int id)
         {
             return _context.Loans.Any(e => e.LoanId == id);
         }
