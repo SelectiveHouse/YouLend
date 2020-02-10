@@ -32,24 +32,24 @@ namespace YouLend.WebAPI.Data
                     LoanId = 1,
                     BorrowerFirstName = "Joe",
                     BorrowerLastName = "Jordan",
-                    RepaymentAmount = 6560.60m,
-                    FundingAmount = 2120.75m
+                    RepaymentAmount = 6560.60,
+                    FundingAmount = 2120.75
                 },
                 new Loan
                 {
                     LoanId = 2,
                     BorrowerFirstName = "Mark",
                     BorrowerLastName = "Ufland",
-                    RepaymentAmount = 600560.60m,
-                    FundingAmount = 342120.75m
+                    RepaymentAmount = 600560.60,
+                    FundingAmount = 342120.75
                 },
                 new Loan
                 {
                     LoanId = 3,
                     BorrowerFirstName = "Barry",
                     BorrowerLastName = "Gibbs",
-                    RepaymentAmount = 1203450.60m,
-                    FundingAmount = 3457180.75m
+                    RepaymentAmount = 1203450.60,
+                    FundingAmount = 3457180.75
                 });
 
                 context.SaveChanges();

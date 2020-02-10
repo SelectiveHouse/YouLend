@@ -36,6 +36,7 @@ namespace YouLend
 
             //Optimise this in the future, registering a repository of a generic type doesnt seem that efficent...
             services.AddScoped(typeof(ILoanRepository<>), typeof(LoanRepository<>));
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

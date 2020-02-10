@@ -3,22 +3,27 @@
     <div class="form-group row">
         <label class="control-label col-md-12">First Name</label>
         <div class="col-md-12">
-            <input class="form-control" type="text" formControlName="borrowerFirstName">
+            <input class="form-control" type="text" formGroupName="borrowerFirstName">
         </div>
-        <span class="text-danger ml-3" *ngIf="borrowerFirstName.invalid && formDir.submitted">
-            First name is required
-        </span>
     </div>
     <div class="form-group row">
         <label class="control-label col-md-12">Last Name</label>
         <div class="col-md-12">
-            <input class="form-control" type="text" formControlName="borrowerLastName">
+            <input class="form-control" type="text" formGroupName="borrowerLastName">
         </div>
-        <span class="text-danger ml-3" *ngIf="borrowerLastName.invalid && formDir.submitted">
-            Last name is required
-        </span>
     </div>
-    
+    <div class="form-group row">
+        <label class="control-label col-md-12">Funding amount</label>
+        <div class="col-md-12">
+            <input class="form-control" type="number" formGroupName="fundingAmount">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Repayment amount</label>
+        <div class="col-md-12">
+            <input class="form-control" type="number" formGroupName="repaymentAmount">
+        </div>
+    </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success float-right">Save</button>
         <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>

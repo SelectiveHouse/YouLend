@@ -25,8 +25,8 @@ namespace YouLend.Tests.Services
                 {
                     BorrowerFirstName = "Hello",
                     BorrowerLastName = "Test",
-                    RepaymentAmount = 500.7m,
-                    FundingAmount = 250.55m
+                    RepaymentAmount = 500.7,
+                    FundingAmount = 250.55
                 });
                 context.SaveChanges();
             }

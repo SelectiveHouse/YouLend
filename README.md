@@ -20,9 +20,9 @@ If you have any questions please ask me.
 - Angular 9.0.0
 - ASP.NET Core 3.1
 
-For a complete list of **Server-Side** packages, see YouLend/YouLend.WebApi/YouLend.WebAPI.csproj
+For a complete list of **Server-Side** packages, see *YouLend/YouLend.WebApi/YouLend.WebAPI.csproj*
 
-For a complete list of **Client-Side** packages, see YouLend/Website/package.json
+For a complete list of **Client-Side** packages, see *YouLend/Website/package.json*
 
 ## Building the Project
 
