@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using YouLend.WebAPI.Data;
 using YouLend.WebAPI.Data.Repositories;
 
@@ -36,6 +37,17 @@ namespace YouLend
 
             //Optimise this in the future, registering a repository of a generic type doesnt seem that efficent...
             services.AddScoped(typeof(ILoanRepository<>), typeof(LoanRepository<>));
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "YouLend API",
+                    Version = "v1" 
+                });
+            });
+
             services.AddApplicationInsightsTelemetry();
         }
 
@@ -57,6 +69,16 @@ namespace YouLend
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "YouLend v1");
+            });
 
             app.UseRouting();
 
